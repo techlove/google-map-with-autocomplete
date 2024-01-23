@@ -58,7 +58,11 @@ class TRMap extends Field
 
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        foreach ($request->input($attribute) as $attr => $data) {
+        $inputValue = $request->input($attribute);
+        if (!isset($inputValue)) {
+            return;
+        }
+        foreach ($inputValue as $attr => $data) {
             if ($data != 'null') {
                 $model->setAttribute($attr, $data);
             }
