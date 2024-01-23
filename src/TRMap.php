@@ -60,6 +60,9 @@ class TRMap extends Field
     {
         $inputValue = $request->input($attribute);
         if (!isset($inputValue)) {
+            $inputValue = $request->input($requestAttribute);
+        }
+        if (!isset($inputValue)) {
             return;
         }
         foreach ($inputValue as $attr => $data) {
